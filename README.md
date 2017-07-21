@@ -1,3 +1,9 @@
+# Sample
+
+![Event Types list](https://api.monosnap.com/rpc/file/download?id=GrT2mL2ywj1bGkaHV2o32R7qCMvG0R)
+
+
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
