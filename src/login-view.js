@@ -1,10 +1,14 @@
 import React from 'react';
-import { Text, TextInput, View, StyleSheet, AsyncStorage, Button } from 'react-native';
+import { Text, TextInput, View, StyleSheet, AsyncStorage, Button, Image } from 'react-native';
 
 export default class LoginView extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image
+          style={styles.logo}
+          source={require('./img/logo.png')}
+        />
         <Text>API Token</Text>
         <TextInput
           style={styles.textInput}
@@ -27,14 +31,21 @@ export default class LoginView extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    marginTop: 100,
     flex: 1,
     backgroundColor: '#fff',
-    padding: 8
+    padding: 8,
+    alignItems: 'center'
   },
   textInput: {
     height: 40,
     borderColor: 'gray',
-    borderWidth: 1
+    borderWidth: 1,
+    width: 300
+  },
+  logo: {
+    width: 50,
+    height: 50,
+    marginBottom: 10
   }
 });

@@ -22,8 +22,8 @@ export default class App extends React.Component {
     if (!this.state.token) {
       return (
         <View style={styles.container}>
-          <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
           <LoginView handler={(params) => this.setState(params)}></LoginView>
+          <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
         </View>
       );
     } else {
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flex: 1,
     backgroundColor: '#fff',
+    alignItems: 'center'
   },
   errorMessage: {
     color: 'red',

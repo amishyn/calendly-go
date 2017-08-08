@@ -44,6 +44,12 @@ export default class EventTypes extends React.Component {
     }
     return (
       <View style={styles.container}>
+        <View style={{alignItems: 'flex-end'}}>
+          <Button
+            title="Logout"
+            onPress={this.onPressLogout.bind(this)}
+          />
+        </View>
         <Text style={styles.header}>EventTypes</Text>
         <ListView
           style={styles.list}
@@ -54,8 +60,12 @@ export default class EventTypes extends React.Component {
     );
   }
 
+  onPressLogout() {
+    this.props.handler({token: null, errorMessage: null});
+  }
+
   loadData() {
-    return fetch('http://calendly.com/api/v1/users/me/event_types',{
+    return fetch('https://calendly.com/api/v1/users/me/event_types', {
       headers: {
         'X-TOKEN': this.props.token
       }
