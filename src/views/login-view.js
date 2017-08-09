@@ -1,13 +1,17 @@
 import React from 'react';
 import { Text, TextInput, View, StyleSheet, AsyncStorage, Button, Image } from 'react-native';
+import { addToken, deleteToken } from '../actions';
+import { connect } from 'react-redux';
 
-export default class LoginView extends React.Component {
+
+// state: { token: {value: '', valid: '', message: '' }}
+class LoginView extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Image
           style={styles.logo}
-          source={require('./img/logo.png')}
+          source={require('../img/logo.png')}
         />
         <Text>API Token</Text>
         <TextInput
@@ -20,7 +24,7 @@ export default class LoginView extends React.Component {
   }
 
   tokenChanged(token) {
-    this.props.handler({token});
+    this.props.dispatchAddToken(token);
     try {
       AsyncStorage.setItem('token', token);
     } catch (error) {
@@ -49,3 +53,22 @@ const styles = StyleSheet.create({
     marginBottom: 10
   }
 });
+
+
+function mapStateToProps (state) {
+  return {
+    token: state.auth.token
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    dispatchAddToken: (token) => dispatch(addToken(token)),
+    dispatchDeleteToken: () => dispatch(deleteToken())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginView)

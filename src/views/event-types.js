@@ -1,8 +1,10 @@
 import React from 'react';
 import { Text, View, ListView, StyleSheet, ActivityIndicator, Button, Share } from 'react-native';
 import EventType from './event-type';
+import { addToken, deleteToken, showError } from '../actions';
+import { connect } from 'react-redux';
 
-export default class EventTypes extends React.Component {
+class EventTypes extends React.Component {
   constructor() {
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -61,7 +63,7 @@ export default class EventTypes extends React.Component {
   }
 
   onPressLogout() {
-    this.props.handler({token: null, errorMessage: null});
+    this.props.dispatchDeleteToken();
   }
 
   loadData() {
@@ -81,13 +83,11 @@ export default class EventTypes extends React.Component {
           // do something with new state
         });
       } else {
-        this.props.handler({token: null, errorMessage: "Can't load data"});
+        this.props.dispatchShowError();
       }
     })
     .catch((error) => {
-      console.log(error);
-      this.props.handler({token: null});
-      console.error(error);
+      this.props.dispatchShowError();
     });
   }
 }
@@ -105,3 +105,23 @@ const styles = StyleSheet.create({
     flex: 1,
   }
 });
+
+
+function mapStateToProps (state) {
+  return {
+    token: state.auth.token
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    dispatchAddToken: (token) => dispatch(addToken(token)),
+    dispatchDeleteToken: () => dispatch(deleteToken()),
+    dispatchShowError: () => dispatch(showError())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EventTypes)
