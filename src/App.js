@@ -24,18 +24,24 @@ class App extends React.Component {
       return (
         <View style={styles.container}>
           <LoginView></LoginView>
-          <Text style={styles.errorMessage}>{this.props.errorMessage}</Text>
+          { this.renderErrorMessage() }
         </View>
       );
     } else {
       return (
         <View style={styles.container}>
-          <Text>token: {this.props.token}</Text>
           <EventTypes></EventTypes>
-          <Text style={styles.errorMessage}>{this.props.errorMessage}</Text>
+          { this.renderErrorMessage() }
         </View>
       );
     }
+  }
+
+  renderErrorMessage() {
+    if (this.props.errorMessage)
+      return (
+        <Text style={styles.errorMessage}>{this.props.errorMessage}</Text>
+      )
   }
 
   dispatchAddToken(token) {
@@ -47,12 +53,12 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 20,
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: 'yellow',
     alignItems: 'center'
   },
   errorMessage: {
-    color: 'red',
-    flex: 1,
+    // color: 'red',
+    height: 20,
   }
 });
 

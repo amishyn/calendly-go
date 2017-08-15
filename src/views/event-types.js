@@ -96,13 +96,14 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 25,
     fontWeight: "700",
-    padding: 12
+    padding: 12,
+
   },
   container: {
     flex: 1,
   },
   list: {
-    flex: 1,
+    flex: 2
   }
 });
 

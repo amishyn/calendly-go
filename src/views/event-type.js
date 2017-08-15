@@ -12,7 +12,9 @@ export default class EventType extends React.Component {
           </Text>
           <Text>{this.props.url}</Text>
         </View>
-        <Button onPress={ () => this.share(this.props.url) } title="Share"></Button>
+        <Button
+          onPress={ () => this.share(this.props.url) } title="Share"
+        ></Button>
       </View>
     );
   }
@@ -40,5 +42,5 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 20, fontWeight: "500"
-  }
+  },
 });
